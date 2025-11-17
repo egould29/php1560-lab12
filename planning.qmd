@@ -1,0 +1,11 @@
+1. Read in data and preprocess
+  1a. preprocess <- function(bike_data.csv), outputs are the dataframe
+      containing the data. This function will read in the data and clean data
+      (remove any NAs, etc.)
+2. Estimate rates of arrival
+  2a. estimated_arrival_rates <- function(data), output is a dataframe
+      containing the computed estimated arrival rates for each pair of stations
+      and each hour given the input data
+3. Simulate a day
+  3a. simulate_day <- function(estimated_rates), output
+    
