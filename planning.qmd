@@ -1,11 +1,28 @@
 1. Read in data and preprocess
-  1a. preprocess <- function(bike_data.csv), outputs are the dataframe
-      containing the data. This function will read in the data and clean data
-      (remove any NAs, etc.)
+  1a. preprocess <- function(bike_data.csv), input is a csv file.
+      outputs are the dataframe containing the data. This function
+      will read in the data and clean data (remove any NAs, etc.)
 2. Estimate rates of arrival
-  2a. estimated_arrival_rates <- function(data), output is a dataframe
-      containing the computed estimated arrival rates for each pair of stations
-      and each hour given the input data
+  2a. estimated_arrival_rates <- function(data), input is a cleaned dataframe.
+      Output is a dataframe containing the computed estimated arrival rates for 
+      each pair of stations and each hour given the input data
 3. Simulate a day
-  3a. simulate_day <- function(estimated_rates), output
-    
+  3a. simulate_day <- function(estimated_rates), input is a dataframe that
+      contains the estimated arrival rates between two stations at any hour. 
+      Output is a dataframe that simulates trips between stations per hour for 
+      a single day. We use this function to simulate when people are at any
+      station at any hour and where they are going in order to help us 
+      determine where to place bikes to optimize trips. This function uses
+      the estimated arrival rates to come up with the simulated trips.
+4. Optimize placement
+  4a. placement <- function(num_bikes, simulated_day_data), inputs include an
+      interger (num_bikes) that represent the total number of bikes to be
+      distributed across the different stations, and the simulated_data that
+      will be analyzed to determine where to put bikes. Output is a
+      dataframe that contains the number of bikes that should be placed at each
+      station (at the start of the day, so at hour 0) to optimize the number 
+      of trips between any two staions at any given hour.
+      
+data -> preprocess() -> estimated_arrival_rates() -> simulate_day() ->
+optimize_placement()
+      
