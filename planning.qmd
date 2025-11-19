@@ -3,7 +3,8 @@
       outputs are the dataframe containing the data. This function
       will read in the data and clean data (remove any NAs, etc.)
 2. Estimate rates of arrival
-  2a. estimated_arrival_rates <- function(data), input is a cleaned dataframe.
+  2a. estimated_arrival_rates <- function(data), input is a cleaned dataframe
+      representing the bike data.
       Output is a dataframe containing the computed estimated arrival rates for 
       each pair of stations and each hour given the input data
 3. Simulate a day
@@ -25,4 +26,9 @@
       
 data -> preprocess() -> estimated_arrival_rates() -> simulate_day() ->
 optimize_placement()
+
+Final output returns a table with number of bikes to be placed at each station
+at the beginning of the day. We will also output a heatmap figure to show which
+pair of stations are the most popular (most trips) for a given hour or across
+the whole day to motivate our placement. 
       
