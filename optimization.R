@@ -1,6 +1,9 @@
 library(dplyr)
 library(tidyverse)
 
+source("estimation.R")
+set.seed(5)
+
 #' @description A helper function that returns each unique station in the data
 #' 
 #' @param data The arrival rates data
@@ -77,6 +80,9 @@ optimize_placement <- function(data, num_bikes, n = 100) {
     stop("Invalid input: incorrect type(s)")
   } else if (num_bikes < 0 | num_bikes %% 1 != 0) {
     stop("Invalid input: 'num_bikes' must be a positive integer")
+  } else if (sum(c("start_station", "end_station", "hour", "avg_trips",
+                   "avg_avail", "mu_hat") %in% colnames(data)) != 6) {
+    stop("Invalid input: data does not have correct column names")
   }
   
   # Initialize a data frame to monitor the total number of successful trips
@@ -112,12 +118,15 @@ optimize_placement <- function(data, num_bikes, n = 100) {
     print(c("finished", i))
   }
   
-  return(placement)
+  return(arrange(placement, station))
 }
 
-####################################################################
+############################## TESTING ################################
 
-# placement <- data.frame(station = 4:24, bikes = randomize_placement(21, 100))
-# test_res <- run_simulation(arrival_rates, placement)
+# Create a subset of the sample bike data to test on
+bike_subset <- bike_data[sample(1:nrow(bike_data), 100), ]
+test_rates <- estimate_arrival_rates(bike_subset)
 
-optimize_placement(arrival_rates, 250, n = 20)
+# TODO: test randomize_placement
+# TODO: test run_simulation
+# TODO: test optimize_placement
