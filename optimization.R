@@ -11,6 +11,7 @@ set.seed(5)
 #' 
 #' @return A vector containing each unique station in the arrival data
 get_stations <- function(data) {
+  # TODO: check input
   return(levels(as.factor(c(data$start_station, data$end_station))))
 }
 
@@ -21,6 +22,7 @@ get_stations <- function(data) {
 #' 
 #' @return A vector containing the number of bikes to be placed at each station.
 randomize_placement <- function(num_stations, num_bikes) {
+  # TODO: check input
   result <- rep.int(0, num_stations)
   
   while (num_bikes > 0) {
@@ -43,7 +45,8 @@ randomize_placement <- function(num_stations, num_bikes) {
 #' 
 #' @return A data frame containing the total number of attempted and successful
 #' trips, and the rate of successful trips, from each starting station.
-run_simulation <- function(data, placement, n = 100) {
+run_simulation <- function(data, placement, n = 20) {
+  # TODO: check input
   success_rate <- data.frame(start_station = c(), successes = c(), trips = c())
   
   while (n > 0) {
