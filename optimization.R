@@ -75,7 +75,7 @@ run_simulation <- function(data, placement, n = 100) {
 #' 
 #' @return A dataframe containing the optimal number of bikes to place at each
 #' station to start the day.
-optimize_placement <- function(data, num_bikes, n = 100) {
+optimize_placement <- function(data, num_bikes, n = 20) {
   # Check the inputs
   if (!is.data.frame(data) | !is.numeric(num_bikes)) {
     stop("Invalid input: incorrect type(s)")
@@ -105,8 +105,10 @@ optimize_placement <- function(data, num_bikes, n = 100) {
       # sum(sim_results$successes) / sum(sim_results$trips)
     
     # Find the stations with the highest and lowest success rates.
-    highest <- slice_max(sim_results, success_rate)$start_station
-    lowest <- slice_min(sim_results, success_rate)$start_station
+    highest <- slice_max(sim_results, success_rate,
+                         with_ties = FALSE)$start_station
+    lowest <- slice_min(sim_results, success_rate,
+                        with_ties = FALSE)$start_station
     
     # Move at least one quarter of bikes from the station with the highest
     # success rate to the station with the lowest success rate.
@@ -116,18 +118,8 @@ optimize_placement <- function(data, num_bikes, n = 100) {
     placement[placement$station == lowest, 2] <-
       placement[placement$station == lowest, 2] + num_to_move
     
-    print(c("finished", i))
+    # print(c("finished", i))
   }
   
   return(arrange(placement, station))
 }
-
-############################## TESTING ################################
-
-# Create a subset of the sample bike data to test on
-bike_subset <- bike_data[sample(1:nrow(bike_data), 100), ]
-test_rates <- estimate_arrival_rates(bike_subset)
-
-# TODO: test randomize_placement
-# TODO: test run_simulation
-# TODO: test optimize_placement
