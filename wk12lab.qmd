@@ -1,6 +1,6 @@
 ---
 title: "PHP 1560: Week 12 Lab"
-author: [Your Name]
+author: Romer Miranda and Ephraim Gould
 format: pdf
 editor: visual
 ---
