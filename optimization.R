@@ -1,5 +1,6 @@
 library(dplyr)
 library(tidyverse)
+library(testthat)
 
 source("estimation.R")
 set.seed(5)
