@@ -179,6 +179,15 @@ simulate_demand <- function(rates) {
 #'additional column, successful_trip, that indicates if the trip can occur
 simulate_day <- function(demand, placement) {
   
+  if(!("station" %in% names(placement))) {
+    print("placement does not include station column")
+    stop()
+  }
+  if(!("bikes" %in% names(placement))) {
+    print("placement does not include bikes column")
+    stop()
+  }
+  
   sorted_df <- arrange(demand, time)
   successful_trips <- c() #will be appended to demand as the new column
   n <- nrow(sorted_df)
