@@ -1,4 +1,5 @@
 library(dplyr)
+library(readr)
 
 source("estimation.R")
 source("optimization.R")
@@ -21,3 +22,7 @@ placement_med <- optimize_placement(estimated_rates, fleet_med)
 print("Finished medium")
 placement_large <- optimize_placement(estimated_rates, fleet_large)
 print("Finished large")
+
+write_csv(placement_small, "results/placement_small.csv")
+write_csv(placement_med, "results/placement_med.csv")
+write_csv(placement_large, "results/placement_large.csv")

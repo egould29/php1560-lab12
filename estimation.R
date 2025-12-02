@@ -219,24 +219,24 @@ simulate_day <- function(demand, placement) {
 
 ############################################################################
 # Load the sample dataset
-bike_data <- read_csv("Data/sample_bike.csv")
+#bike_data <- read_csv("Data/sample_bike.csv")
 
 # Estimate arrival rates
-arrival_rates <- estimate_arrival_rates(bike_data)
+#arrival_rates <- estimate_arrival_rates(bike_data)
 #print(arrival_rates, n = 10)
 
 # Estimating new arrivals
-new_arrivals <- simulate_demand(arrival_rates)
+#new_arrivals <- simulate_demand(arrival_rates)
 #print(new_arrivals)
 
 # Creating example initial placement of bikes, 5 at each station (4-24)
-stations <- seq(from=4, to=24, by=1) #length 21
-num_bikes <- rep(5, 21)
-init_placement <- data.frame(
-  station = stations,
-  bikes = num_bikes
-)
+#stations <- seq(from=4, to=24, by=1) #length 21
+#num_bikes <- rep(5, 21)
+#init_placement <- data.frame(
+#  station = stations,
+#  bikes = num_bikes
+#)
 
 # Estimating trips and successes in a single day
-trips_in_one_day <- simulate_day(new_arrivals, init_placement)
+#trips_in_one_day <- simulate_day(new_arrivals, init_placement)
 #print(trips_in_one_day)
