@@ -37,12 +37,6 @@ opt_placement <- optimize_placement(test_rates, n_bikes)
 testthat::expect_equal(sum(!(opt_placement$station %in% stations)), 0)
 testthat::expect_equal(sum(opt_placement$bikes), n_bikes)
 
-# TODO: test randomize_placement
-#testthat::expect_equal(length(randomize_placement(10, 100)), 10)
-#testthat::expect_true(sum(randomize_placement(10, 100)), 100)
-
-# TODO: test run_simulation
-
 #testing arrivals_per_pair
 test_arrival_per_pair <- function(){
   bike_data <- read_csv("/Users/romer/Desktop/php1560/Data/sample_bike.csv")
@@ -90,8 +84,3 @@ test_simulate_day <- function() {
 test_arrival_per_pair()
 test_simulate_demand()
 test_simulate_day()
-
-
-
-# TODO: test optimize_placement
-
